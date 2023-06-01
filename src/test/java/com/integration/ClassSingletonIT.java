@@ -1,17 +1,19 @@
 package com.integration;
 
 import com.server.td1p1.model.ClassSingleton;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
-public class ClassSingletonIT {
-    public static void main(String[] args) {
-        ClassSingleton singletonInstance1 = ClassSingleton.getInstance();
-        System.out.println(singletonInstance1.getDescription()); // affiche " instance created."
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-        ClassSingleton singletonInstance2 = ClassSingleton.getInstance();
-        System.out.println(singletonInstance2.getDescription()); // affiche également " instance created."
-
-        singletonInstance1.setDescription("New Singleton description.");
-        System.out.println(singletonInstance1.getDescription()); // affiche "New description."
-        System.out.println(singletonInstance2.getDescription()); // affiche également "New description."
-    }
+@SpringBootTest
+class ClassSingletonIT {
+    @Test
+    void test() {
+            ClassSingleton instance1 = ClassSingleton.getInstance();
+            ClassSingleton instance2 = ClassSingleton.getInstance();
+            instance1.setDescription("created");
+            assertEquals("created", instance1.getDescription());
+            assertEquals("created", instance2.getDescription());
+        }
 }

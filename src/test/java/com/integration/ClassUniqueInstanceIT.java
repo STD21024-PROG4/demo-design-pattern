@@ -1,21 +1,19 @@
 package com.integration;
 
 import com.server.td1p1.model.ClassUniqueInstance;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+@SpringBootTest
 public class ClassUniqueInstanceIT {
-    public static void main(String[] args) {
-        ClassUniqueInstance singletonInstance1 = ClassUniqueInstance.getInstance();
-        System.out.println(singletonInstance1.getClick()); // affiche "0"
-
-        ClassUniqueInstance singletonInstance2 = ClassUniqueInstance.getInstance();
-        System.out.println(singletonInstance2.getClick()); // affiche également "0"
-
-        singletonInstance1.incrementClick();
-        System.out.println(singletonInstance1.getClick()); // affiche "1"
-        System.out.println(singletonInstance2.getClick()); // affiche également "1"
-
-        singletonInstance2.incrementClick();
-        System.out.println(singletonInstance1.getClick()); //affiche "2"
-        System.out.println(singletonInstance2.getClick()); // affiche également "2"
+    @Test
+    void test() {
+        ClassUniqueInstance instance1 = ClassUniqueInstance.getInstance();
+        ClassUniqueInstance instance2 = ClassUniqueInstance.getInstance();
+        instance1.setClick(1);
+        assertEquals(1, instance1.getClick());
+        assertEquals(1, instance2.getClick());
     }
 }

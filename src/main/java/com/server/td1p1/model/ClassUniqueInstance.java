@@ -1,5 +1,14 @@
 package com.server.td1p1.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
 public final class ClassUniqueInstance {
     private static ClassUniqueInstance instance= null;
     private int click;
@@ -16,8 +25,9 @@ public final class ClassUniqueInstance {
         return instance;
     }
 
-    public void incrementClick() {
+    public short incrementClick() {
         this.click++;
+        return 0;
     }
     public int getClick() {
         return this.click;
